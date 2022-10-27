@@ -43,12 +43,12 @@ function questions() {
 
             case "Manager":
                 console.log("New Manager")
-                addManager();
+                addManager(answers);
                 break;
 
             case "Intern":
                 console.log("New Intern")
-                addIntern();
+                addIntern(answers);
                 break;
 
             default:
@@ -63,8 +63,9 @@ questions()
 
 // Specific questions for each role from the choice list. 
 
-function addEngineer() {
-    inquirer.prompt([
+function addEngineer(answers) {
+    console.log(answers)
+        inquirer.prompt([
         {
             type: "input",
             name: "Github",
@@ -89,14 +90,13 @@ function addEngineer() {
     })
 }
 
-function addManager() {
+function addManager(answers) {
     inquirer.prompt([
         {
             type: "input",
             name: "Office Number",
             message: "What is your office number?"
         },
-        +
         {
             type: "confirm",
             name: "AddEmployee",
@@ -106,7 +106,7 @@ function addManager() {
         console.log(name);
         const newManager = new Manager(name);
         employee.push(newManager);
-        if (answer.AddEmployee === true) {
+        if (answers.AddEmployee === true) {
             questions()
         } else {
             newTeam();
@@ -116,7 +116,7 @@ function addManager() {
     })
 }
 
-function addIntern() {
+function addIntern(answers) {
     inquirer.prompt([
         {
             type: "input",
@@ -138,17 +138,9 @@ function addIntern() {
 }
 
 //create team
-/*function newTeam() {
+function newTeam() {
     fs.writeFile('generateHtml.js', generateHtml(answers), function (err) {
         if (err) throw err;
         console.log(generateHtml);
     })
 }
-*/
-
-
-
-
-
-
-
