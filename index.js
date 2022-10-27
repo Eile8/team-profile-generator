@@ -35,10 +35,10 @@ function questions() {
             choices: ["Engineer", "Manager", "Intern"],
         },
     ]).then(answers => {
-        switch (answers.questions) {
+        switch (answers.Role) {
             case "Engineer":
                 console.log("New Engineer")
-                addEngineer();
+                addEngineer(answers);
                 break;
 
             case "Manager":
@@ -75,11 +75,11 @@ function addEngineer() {
             name: "AddEmployee",
             message: "Done! Would you like to add another employee?"
         }
-    ]).then(({ name }) => {
-        console.log(name);
-        const newEgineer = new Engineer(name);
+    ]).then(answers => {
+        console.log(answers);
+        const newEgineer = new Engineer(answers);
         employee.push(newEgineer);
-        if (answer.AddEmployee === true) {
+        if (answers.AddEmployee === true) {
             questions()
         } else {
             newTeam();
@@ -96,6 +96,7 @@ function addManager() {
             name: "Office Number",
             message: "What is your office number?"
         },
+        +
         {
             type: "confirm",
             name: "AddEmployee",
@@ -137,12 +138,13 @@ function addIntern() {
 }
 
 //create team
-function newTeam() {
+/*function newTeam() {
     fs.writeFile('generateHtml.js', generateHtml(answers), function (err) {
         if (err) throw err;
         console.log(generateHtml);
     })
 }
+*/
 
 
 
